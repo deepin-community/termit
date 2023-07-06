@@ -1,0 +1,28 @@
+            Termit
+
+    Simple terminal emulator based on vte library, extensible via lua.
+
+    Features:
+        * multiple tabs
+        * switching encodings
+        * sessions
+        * configurable keybindings
+        * embedded Lua 
+    Configuration can be changed via $HOME/.config/termit/rc.lua file (example is provided).
+    
+    Command-line arguments:
+        * --version (-v) - prints version info
+        * --init=init_file - use init_file instead of standard rc.lua
+        * --execute=cmd - execute command (also -e)
+
+    Keybindings can be configured via rc.lua.
+    Defaults are:
+        Alt-Left     -  previous tab  
+        Alt-Right    -  next tab      
+        Ctrl-t       -  open tab      
+        Ctlr-w       -  close tab     
+        Ctrl-Insert  -  copy          
+        Shift-Insert -  paste         
+
+    Lua API is described in lua_api.txt
+

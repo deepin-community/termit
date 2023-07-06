@@ -1,0 +1,49 @@
+Summary: termit (terminal emulator)
+Name: termit
+Version: @TERMIT_PACKAGE_VERSION@
+Release: 1%{?dist}
+License: GPLv3
+URL: http://wiki.github.com/nonstop/termit/
+Group: System Environment/Base
+Source: %{name}-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+BuildRequires:  gtk3-devel >= 3.18
+BuildRequires:  vte-devel >= 0.42.5
+BuildRequires:  lua-devel >= 5.2
+BuildRequires:  cmake desktop-file-utils gettext
+
+%description
+Small terminal emulator. The only dependencies are Vte and Gtk3 libs.
+Termit supports tabs, bookmarks, encoding switching and sessions.
+
+%prep
+%setup -q
+
+%build
+find . -type f -name CMakeCache.txt -exec rm -rf {} \;
+%cmake DCMAKE_INSTALL_DOCDIR=%{_docdir} .
+make VERBOSE=1 %{?_smp_mflags}
+
+%install
+rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT
+desktop-file-install                                       \
+  --delete-original                                        \
+  --remove-category=Utility                                \
+  --add-category=System                                    \
+  --dir=${RPM_BUILD_ROOT}%{_datadir}/applications          \
+  ${RPM_BUILD_ROOT}%{_datadir}/applications/%{name}.desktop
+%find_lang %{name}
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/doc/termit/
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files -f %{name}.lang
+%defattr(-,root,root,-)
+%doc ChangeLog COPYING TODO
+%doc doc/README doc/rc.lua.example doc/lua_api.txt doc/termit.svg
+%{_bindir}/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_mandir}/man1/%{name}.1.*
