@@ -1,0 +1,438 @@
+.\" Process this file with
+.\" groff -man -Tascii foo.1
+.\"
+.TH TERMIT 1 "NOV 2008" Linux "User Manuals"
+.SH NAME
+termit \(hy lightweight terminal emulator
+.SH SYNOPSIS
+.B termit [\-option ...]
+.SH DESCRIPTION
+.B termit
+is a vte\(hybased lightweight terminal emulator. All configuration
+is done via Lua\(hyscripts. The only other dependencies are 
+Gtk+ and Vte.
+.SH OPTIONS
+.BR \-h,
+.BR \-\-help
+.RS
+Print help
+.RE
+.BR \-v,
+.BR \-\-version
+.RS
+Print version number
+.RE
+.BR \-e,
+.BR \-\-execute
+=
+.I cmd
+.RS
+Use
+.I cmd
+as shell
+.RE
+.BR \-i,
+.BR \-\-init
+=
+.I file
+.RS
+Use
+.I file
+instead of default rc.lua
+.RE
+.BR \-n,
+.BR \-\-name
+=
+.I name
+.RS
+Use
+.I name
+in window name hint
+.RE
+.BR \-c,
+.BR \-\-class
+=
+.I class
+.RS
+Use
+.I class
+in window class hint
+.RE
+.BR \-r,
+.BR \-\-role
+=
+.I role
+.RS
+Use
+.I role
+in window role Gtk\(hyhint
+.RE
+.BR \-T,
+.BR \-\-title
+=
+.I title
+.RS
+Use
+.I title
+in window title (Turns off
+.I allowChangingTitle
+option.)
+.RE
+.P
+termit \-\-init=session.lua \-\-name=TermitName \-\-class=TermitClass \-\-role=TermitRole \-\-title=TermitTitle \-\-execute=zsh
+.P
+.RE
+.SH FILES
+.I $HOME/.config/termit/rc.lua
+.RS
+Per user configuration file. See section
+.BR "TERMIT LUA API"
+for further details.
+.RE
+.I /usr/share/doc/termit/rc.lua.example
+.RS
+Example rc.lua file. Demonstrates usage of almost all available settings.
+.SH "TERMIT LUA API"
+.B "Functions:"
+
+.B activateTab
+(
+.I tab_index
+)
+    Activates tab by index.
+    tab_index \(hy index of tab to activate. Index of the first tab is 1.
+.P
+.B addMenu
+(
+.I menu
+)
+    Adds menu in menubar.
+    menu \(hy table of TermitMenuItem type.
+.P
+.B addPopupMenu
+(
+.I menu
+)
+    Adds menu in popup menu, similar to addMenu.
+    menu \(hy table of TermitMenuItem type.
+.P
+.B bindKey
+(
+.I keys
+,
+.I luaFunction
+)
+    Sets new keybinding. If luaFunction is 
+.I nil
+removes keybinding.
+    keys \(hy string with keybinding. Available modifiers are Alt Ctrl Shift Meta Super Hyper.
+    luaFunction \(hy callback function
+.P
+.B bindMouse
+(
+.I event
+,
+.I luaFunction
+)
+    Sets new mouse\(hybinding. If luaFunction is 
+.I nil
+removes mouse\(hybinding.
+    event \(hy string with one of those values: DoubleClick
+    luaFunction \(hy callback function
+.P
+.B closeTab
+()
+    Closes active tab.
+.P
+.B copy
+()
+    Copies selection into tab's buffer.
+.P
+.B currentTab
+()
+    Returns current tab of TermitTabInfo.
+.P
+.B currentTabIndex
+()
+    Returns current tab index.
+.P
+.B feed
+(
+.I
+data
+)
+    Interprets data as if it were data received from a terminal process.
+.P
+.B feedChild
+(
+.I
+data
+)
+    Sends a data to the terminal as if it were data entered by the user at the keyboard.
+.P
+.B findDlg
+()
+    Opens search entry.
+.P
+.B findNext
+()
+    Searches the next string matching search regex.
+.P
+.B findPrev
+()
+    Searches the previous string matching search regex.
+.P
+.B forEachRow
+(
+.I func
+)
+    For each terminal row in entire scrollback buffer executes function passing row as argument.
+    func \(hy function to be called.
+.P
+.B forEachVisibleRow
+(
+.I func
+)
+    For each visible terminal row executes function passing row as argument.
+    func \(hy function to be called.
+.P
+.B loadSessionDlg
+()
+    Displays "Load session" dialog.
+.P
+.B nextTab
+()
+    Activates next tab.
+.P
+.B openTab
+(
+.I tabInfo
+)
+    Opens new tab.
+    tabinfo \(hy table of TermitTabInfo with tab settings.
+.P
+.B paste
+()
+    Pastes tab's buffer.
+.P
+.B preferencesDlg
+()
+    Displays "Preferences" dialog.
+.P
+.B prevTab
+()
+    Activates previous tab.
+.P
+.B quit
+()
+    Quit.
+.P
+.B reconfigure
+()
+    Sets all configurable variables to defaults and forces rereading rc.lua.
+.P
+.B saveSessionDlg
+()
+    Displays "Save session" dialog.
+.P
+.B selection
+()
+    Returns selected text from current tab.
+.P
+.B setColormap
+(
+.I colormap
+)
+    Changes colormap for active tab.
+    colormap \(hy array with 8 or 16 or 24 colors.
+.P
+.B setEncoding
+(
+.I encoding
+)
+    Changes encoding for active tab.
+    encoding \(hy string with encoding name.
+.P
+.B setKbPolicy
+(
+.I kb_policy
+)
+    Sets keyuboard policy for shortcuts.
+    kb_policy \(hy string with one of those values:
+        keycode \(hy use hardware keyboard codes (XkbLayout\(hyindependent)
+        keysym \(hy use keysym values (XkbLayout\(hydependent)
+.P
+.B setOptions
+(
+.I opts
+)
+    Changes default options.
+    opts \(hy TermitOptions table with new options.
+.P
+.B setTabBackgroundColor
+(
+.I color
+)
+    Changes background color for active tab.
+    color \(hy string with new color.
+.P
+.B setTabFont
+(
+.I font
+)
+    Changes font for active tab.
+    font \(hy string with new font.
+.P
+.B setTabForegroundColor
+(
+.I color
+)
+    Changes foreground (e.g. font) color for active tab.
+    color \(hy string with new color.
+.P
+.B setTabPos
+(
+.I newPos
+)
+    Changes position for active tab.
+    newPos \(hy number with new tab position.
+.P
+.B setTabTitle
+(
+.I tabTitle
+)
+    Changes title for active tab.
+    tabTitle \(hy string with new tab title.
+.P
+.B setTabTitleDlg
+()
+    Displays "Set tab title" dialog.
+.P
+.B setWindowTitle
+(
+.I title
+)
+    Changes termit window title.
+    title \(hy string with new title.
+.P
+.B spawn
+(
+.I command
+)
+    Spawns command (works via shell).
+    command \(hy string with command and arguments.
+.P
+.B toggleMenubar
+()
+    Displays or hides menubar.
+.P
+.P
+.B toggleTabbar
+()
+    Displays or hides tabbar.
+.P
+
+.B "Types:"
+
+.B TermitCursorBlinkMode
+\(hy one of those string values:
+    System              Follow GTK+ settings for cursor blinking
+    BlinkOn             Cursor blinks
+    BlinkOff            Cursor does not blink
+.P
+.B TermitCursorShape
+\(hy one of those string values:
+    Block               Draw a block cursor
+    Ibeam               Draw a vertical bar on the left side of character
+    Underline           Draw a horizontal bar below the character
+.P
+.B TermitEraseBinding
+\(hy one of those string values:
+    Auto                VTE_ERASE_AUTO
+    AsciiBksp           VTE_ERASE_ASCII_BACKSPACE
+    AsciiDel            VTE_ERASE_ASCII_DELETE
+    EraseDel            VTE_ERASE_DELETE_SEQUENCE
+    EraseTty            VTE_ERASE_TTY
+.P
+For detailed description look into Vte docs.
+.P
+.B TermitKeybindings
+\(hy table with predefined keybindings.
+    closeTab            'Ctrl\(hyw'
+    copy                'Ctrl\(hyInsert'
+    nextTab             'Alt\(hyRight'
+    openTab             'Ctrl\(hyt'
+    paste               'Shift\(hyInsert'
+    prevTab             'Alt\(hyLeft'
+.P
+.B TermitMatch
+\(hy table for matches.
+    field name          match regular expression
+    field value         lua callback for action on Left\(hyclick.
+.P
+.B TermitMenuItem
+\(hy table for menuitems.
+    accel               accelerator for menuitem. String with keybinding
+    action              lua function to execute when item activated
+    name                name for menuitem
+.P
+.B TermitOptions
+\(hy table with termit options.
+    allowChangingTitle  auto change title (similar to xterm)
+    audibleBell         enables audible bell
+    backgroundColor     background color
+    backspaceBinding    reaction on backspace key (one of TermitEraseBinding)
+    colormap            array with 8 or 16 or 24 colors
+    cursorBlinkMode     cursor blink mode (one of TermitCursorBlinkMode)
+    cursorShape         cursor shape (one of TermitCursorShape)
+    deleteBinding       reaction on delete key (one of TermitEraseBinding)
+    encoding            default encoding
+    fillTabbar          expand tabs' titles to fill whole tabbar
+    font                font name
+    foregroundColor     foreground color
+    geometry            cols x rows to start with
+    getTabTitle         lua function to generate new tab title
+    getWindowTitle      lua function to generate new window title
+    hideMenubar         hide menubar
+    hideSingleTab       hide tabbar when only 1 tab present
+    hideTabbar          hide tabbar
+    hideTitlebarWhenMaximized hide window titlebar when mazimized
+    matches             table with items of TermitMatch type
+    scrollbackLines     the length of scrollback buffer
+    scrollOnKeystroke   enables scroll to the bottom when the user presses a key
+    scrollOnOutput      enables scroll to the bottom when new data is received
+    setStatusbar        lua function to generate new statusbar message
+    showScrollbar       display scrollbar
+    showBorder          show notebook borders
+    startMaximized      maximize window on start
+    tabName             default tab name
+    tabPos              tabbar position (Top, Bottom, Left, Right)
+    tabs                table with items of TermitTabInfo type
+    urgencyOnBell       set WM\(hyhint 'urgent' on termit window when bell
+    wordCharExceptions  additional word characters (double click selects word)
+.P
+.B TermitTabInfo
+\(hy table with tab settings:
+    command             tab start command
+    encoding            current tab encoding
+    font                font string
+    fontSize            font size
+    pid                 process id
+    title               tab title
+    workingDir          tab working dir
+.P
+.B "Globals:"
+
+.B tabs
+is the array with settings for all tabs. Access specific tab by index.
+.RS
+.SH EXAMPLES
+Look inside provided rc.lua.example.
+.SH BUGS
+After start sometimes there is black screen. Resizing termit window helps.
+.P
+In options table 'tabs' field should be the last one. When loading all settings are applied in the same order as they are set in options table. So if you set tabs and only then colormap, these tabs would have default colormap.
+.SH AUTHOR
+Evgeny Ratnikov <ratnikov.ev at gmail dot com>
+.SH "SEE ALSO"
+.BR lua (1)

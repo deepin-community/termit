@@ -1,0 +1,227 @@
+	require Lua 5.3
+	disable menubar on F10
+	new options:
+		scrollOnKeystroke, scrollOnOutput
+	fixed tab style reset after cancel preferences dialog
+	refactored several deprecated functions
+	fixed recursive termit_close_tab call
+	appdata -> metainfo
+	default icon name for terminal window
+	irc colormap (by clort81)
+	get rid of deprecated match_check
+version 3.0
+	added AppData file
+	license changed to GPLv3.0+
+	added 'apply to all tabs' in preferences dialog
+	new options:
+		cursorBlinkMode, cursorShape
+		startMaximized, hideTitlebarWhenMaximized
+	wordChars replaced with wordCharExceptions
+	removed options:
+		imageFile, transparency, visibleBell
+	Require libvte>0.29 and Gtk-3.
+version 2.10.1
+	Fixed error with conflicting libvte/Gtk versions
+	Fixed ebuild (by Ilya Mochalov).
+	Suppress "invalid option" for -e.
+	Fixed missing link to math library (by Thomas Koch)
+	Miminum required version for Gtk-2 changed to 2.24.
+	Miminum required version for libvte changed to 0.28.
+	Rebuild po-files due to source changes.
+version 2.10.0
+	fixed compilation for OpenBSD
+	prevent building termit with incompatible Gtk and Vte versions
+	"exec" commandline option now works nearly like in xterm
+	new options:
+		showBorder - show notebook's borders
+version 2.9.6
+	fixed handling geometry setting
+	added support to choose libraries while configuring termit build
+	scrollable tabs in tabbar
+	new options:
+		tabPos - set tabbar position
+version 2.9.5
+	fixed bug with hideTabbar and hideSingleTab
+	tabs indexes start with 1 (Lua-indexing)
+	fixed desktop file
+	added Swedish translation (by Tomas Fasth)
+version 2.9.4
+	fix hyphen-used-as-minus-sign in manpage (by Thomas Koch)
+	new options:
+		hideTabbar (by Anurag Priyam)
+	new Lua functions:
+		toggleTabbar
+	added Polish translation (by Miś Uszatek)
+	added Danish translation
+	added support for Lua 5.2
+	fixed docs
+version 2.9.3
+	fixed installing as non-root
+	added Spanish translation (by Martintxo)
+	added German translation (by Dennis Ploeger)
+	updated Hungarian translation (by Peter Polonkai)
+	apply foreground color for bold fonts
+	added several WM-specific commandline options: --name, --class, --role
+version 2.9.2
+	fix build with --as-needed linker flags enabled (patch by Artur Frysiak)
+	Meta, Super and Hyper in keybindings (patch by Artur Frysiak)
+	project language set to C
+	new Lua functions:
+	    feed feedChild
+	fixed some compilation issues when using Gtk+3
+	added Japanese translation (by Nobuhiro Iwamatsu)
+version 2.9.1
+	fixed setEncoding in termit.utils module
+	fixed possible zombie process
+version 2.9.0
+	new Lua functions:
+		setColormap
+	added support for system-wide rc.lua
+	added support for using modules in rc.lua
+	added several predefined colormaps
+version 2.8.1
+	fixed bug in currentTabIndex
+version 2.8.0
+	search in vte buffer (only for vte >= 0.26)
+	new Lua functions
+		forEachRow
+		forEachVisibleRow
+		findDlg findNext findPrev
+	new options
+		backspaceBinding
+		deleteBinding
+		setStatusbar
+	extra warnings when compiling in DEBUG mode
+	fixed docs
+version 2.7.1
+	display proper encoding when switching pages
+version 2.7.0
+	refactored reading table from Lua
+	fixed working with sessions
+	new options:
+		imageFile - path to image to be set on the background
+		colormap - instead of setColormap
+		matches - instead of setMatches
+		tabs - opened by default tabs
+	changed default binding for 'closeTab' from 'Ctrl-w' to 'CtrlShift-w'
+	cleanup
+	fixed docs
+version 2.6.0
+	fixed -e option: read configs first only then execute
+	accelerators for user menus
+	new Lua functions
+		setTabTitleDlg
+		loadSessionDlg
+		saveSessionDlg
+		preferencesDlg
+		quit
+	cleanup
+	fixed docs
+	removed support for deprecated:
+		use rc.lua instead of init.lua
+		in openTab use title instead of name
+			and workingDir instead of working_dir
+		action in menuitem must be lua-function
+version 2.5.0
+	GPLv2 license agreement in every source file
+	new Lua functions
+		selection
+		currentTab
+	global array 'tabs' with tab settings
+	fixed bug: hidden menu appears after reconfigure
+	deprecated:
+		use rc.lua instead of init.lua
+		in openTab use title instead of name
+			and workingDir instead of working_dir
+	fixed docs
+version 2.4.0
+	new Lua functions
+		setColormap
+version 2.3.0
+	read rc.lua instead of init.lua (init.lua is deprecated)
+	new Lua functions
+	new options
+		audibleBell, visibleBell, setMatches, spawn, urgencyOnBell
+version 2.2.0
+	mixed modifiers (e.g. AltCtrl, AltShift, etc.)
+	new Lua functions
+		setTabForegroundColor,	setTabBackgroundColor, bindMouse,
+		toggleMenubar, setWindowTitle, currentTabIndex, getTabTitle,
+		getWindowTitle
+	new options
+		per-tab foreground/background colors, fillTabbar, hideMenubar,
+		changeTitle
+version 2.1.1
+	fixed typo in docs, init foreground color with "gray", proper Lua-includes
+	when building from source
+version 2.1.0
+	added support for changing foreground color
+	added man page
+	cmake_minimum_required changed to 2.6.1, 2.6.0 have problems with
+		FindLua51.cmake module
+	fixed reconfigure when running with --init option
+version 2.0.0
+	embedded Lua - configs and sessions replaced with lua-scripts
+	xterm-like dynamic window title
+version 1.3.5
+	added Korean translation (by SeonKon Choi)
+	added termit.spec.in for Fedora 8 (by SeonKon Choi)
+	fixed bug with show/hide scrollbar
+version 1.3.4
+	fixes Hungarian translation (by Peter Polonkai)
+version 1.3.3
+	added termit.SlackBuild and termit.ebuild
+	added support for kb_policy (for shortcuts)
+versoin 1.3.2
+	fixed loading default options when no config file was found
+	added session.example to installed docs
+version 1.3.1
+	added show_scrollbar option in popup menu and termit.cfg
+	shell_cmd variable splitted into shell (eg bash, zsh, python, etc) 
+		and shell_cmd (eg -c 'su - root', etc)
+	updated documentation
+	bugfix with uninitialized GError
+	fixed --usage output
+	fixed statusbar encoding when loading session
+	fixed compilation warnings
+version 1.3
+	when both -s and -e options are presented at command line load session and add tab with command
+	added --execute/-e command-line option
+	added hide_single_tab options in termit.cfg (hide tab tray when only one tab is opened)
+	added configurable keybindings (example here: doc/termit.example)
+	added support for shell_cmd in session file
+	added transparent background options in termit.cfg (patch by Tetralet)
+	added doc/session.example
+	code cleanup
+version 1.2
+	tabs are reordable for Gtk versions > 2.10.0
+	added geometry option in termit.cfg (setting COLSxROWS)
+	--help support
+	added initial Translation Chinese translation (author Ming Lu)
+version 1.1.3
+	default Sans font replaced with Monospace
+	fixed linking with option "--as-needed" (patch by Andrew Borodin)
+version 1.1.2
+	bugfix with GError when parsing config files
+	added hungarian translation (author Peter Polonkai)
+	added french translation (author Mallory Mollo)
+version 1.1.1
+	important for 64bit platforms: fixes a cast of a pointer to "int"
+	use pkg-config for detecting vte library
+version 1.1
+	build system changed to CMake (http://www.cmake.org/)
+	--version (-v) support
+	added session support
+	added desktop file according to "Desktop Entry Specification" v1.0
+	config file placement changed according to "XDG Base Directory Specification" v0.6
+version 1.0.3
+	double-click on empty space in tabbar opens new tab
+	in debug mode prints pid of child shell process
+version 1.0.2
+	only fixing bootstrap.sh
+version 1.0.1
+	removed unneccessary free - potential "double-free" error
+version 1.0
+	initial release
+
+

@@ -1,4 +1,11 @@
 #!/usr/bin/make -f
 
+DOCDIR=debian/termit/usr/share/doc/termit
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
 %:
 	dh $@
+
+override_dh_auto_install:
+	dh_auto_install
+	rm ${DOCDIR}/COPYING

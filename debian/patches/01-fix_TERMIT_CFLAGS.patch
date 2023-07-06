@@ -1,0 +1,18 @@
+Description: `LUA_INCLUDE_DIR` is incorrect, the correct one is `LUA_INCLUDEDIR`.
+Thus, "-I${LUA_INCLUDE_DIR}" will become "-I", suppressing the following
+argument. However, it can be simply dropped as d9731f1 has already
+included `LUA_CFLAGS` in `TERMIT_CFLAGS`.
+Author: https://github.com/Rongronggg9
+Origin: https://github.com/nonstop/termit/commit/da3ffae3ee6bcf3c4df566cfb4e93483ac1b2d64
+
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -42,7 +42,7 @@
+ 
+ INCLUDE(Sources.cmake)
+ 
+-SET(TERMIT_CFLAGS "-I${LUA_INCLUDE_DIR}")
++SET(TERMIT_CFLAGS "")
+ IF(${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
+   SET(TERMIT_CFLAGS "${TERMIT_CFLAGS} -I/usr/local/include")
+ ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")

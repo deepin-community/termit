@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Termit
+GenericName=Terminal emulator
+GenericName[ru]=Эмулятор терминала
+Comment=Lightweight terminal emulator
+Comment[ru]=Легкий эмулятор терминала
+TryExec=termit
+Exec=termit
+Icon=utilities-terminal
+Type=Application
+Categories=GTK;System;TerminalEmulator;
+Terminal=false
+Keywords=Run;
+

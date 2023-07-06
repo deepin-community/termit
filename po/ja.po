@@ -1,0 +1,132 @@
+# Copyright (c) 2011 Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+msgid ""
+msgstr ""
+"Project-Id-Version: termit japanese translate\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2011-09-01 02:28+0900\n"
+"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+
+#: src/termit_preferences.c:218
+msgid "Apply to all tabs"
+msgstr ""
+
+#: src/termit_preferences.c:206
+msgid "Background"
+msgstr "背景"
+
+#: src/termit_core_api.c:440
+msgid "Cannot create a new tab"
+msgstr "新しいタブを作成できません"
+
+#: src/termit_core_api.c:392
+msgid "Cannot parse command. Creating tab with shell"
+msgstr "コマンドを解析できません。シェル経由でタブを作成します"
+
+#: src/termit.c:187 src/termit.c:226
+msgid "Copy"
+msgstr ""
+
+#: src/termit.c:170 src/termit.c:223
+msgid "Delete"
+msgstr ""
+
+#: src/termit.c:190
+msgid "Edit"
+msgstr "編集"
+
+#: src/termit.c:173
+msgid "File"
+msgstr "ファイル"
+
+#: src/termit_preferences.c:192
+msgid "Font"
+msgstr "フォント"
+
+#: src/termit_preferences.c:199
+msgid "Foreground"
+msgstr "前景"
+
+#. File menu
+#: src/termit.c:169 src/termit.c:222
+msgid "Open"
+msgstr ""
+
+#. Sessions menu
+#: src/termit.c:202 src/callbacks.c:395
+msgid "Open session"
+msgstr "セッションを開く"
+
+#: src/termit.c:188 src/termit.c:227
+msgid "Paste"
+msgstr ""
+
+#: src/termit.c:186 src/termit.c:225 src/termit_preferences.c:166
+msgid "Preferences"
+msgstr ""
+
+#: src/termit.c:171 src/termit.c:228
+msgid "Quit"
+msgstr ""
+
+#: src/termit.c:203 src/callbacks.c:365
+msgid "Save session"
+msgstr "セッションを保存する"
+
+#: src/termit.c:229
+msgid "Scrollbar"
+msgstr "スクロールバー"
+
+#: src/termit.c:205
+msgid "Sessions"
+msgstr "セッション"
+
+#. Edit menu
+#: src/termit.c:185 src/termit.c:224
+msgid "Set tab name..."
+msgstr "タブ名を設定する"
+
+#: src/callbacks.c:41
+msgid ""
+"Several tabs are opened.\n"
+"Close anyway?"
+msgstr "終了しますか?"
+
+#: src/callbacks.c:274 src/callbacks.c:285
+msgid "Tab name"
+msgstr "タブ名"
+
+#: src/termit_preferences.c:186
+msgid "Title"
+msgstr "タイトル"
+
+#: src/sessions.c:90
+#, c-format
+msgid "Unable to create directory '%s': %s"
+msgstr "ディレクトリ '%s' が生成できません: %s"
+
+#: src/termit_preferences.c:212
+#, fuzzy
+msgid "audible bell"
+msgstr "可聴ベル"
+
+#~ msgid "Background image"
+#~ msgstr "背景画像"
+
+#~ msgid "Image"
+#~ msgstr "画像"
+
+#~ msgid "Transparency"
+#~ msgstr "透過"
+
+#~ msgid "Visible bell"
+#~ msgstr "可視ベル"
+
+#~ msgid "images"
+#~ msgstr "画像"
